@@ -51,6 +51,8 @@ public class ProceduralMeshTest : MonoBehaviour
     private void OnValidate()
     {
         enabled = true;
+        CacheComponents();
+        InitializeMeshRenderer();
     }
 
     private void Initialize()
@@ -62,13 +64,17 @@ public class ProceduralMeshTest : MonoBehaviour
 
     private void CacheComponents()
     {
-        MeshFilterComponent   = GetComponent<MeshFilter>();
-        MeshRendererComponent = GetComponent<MeshRenderer>();
+
+        MeshFilterComponent   = MeshFilterComponent ? MeshFilterComponent : GetComponent<MeshFilter>();
+        MeshRendererComponent = MeshRendererComponent ? MeshRendererComponent : GetComponent<MeshRenderer>();
     }
         
     private void InitializeMeshRenderer()
     {
-        MeshRendererComponent.sharedMaterial = MaterialToUseForMeshRenderer;
+        if (MeshRendererComponent)
+        {
+            MeshRendererComponent.sharedMaterial = MaterialToUseForMeshRenderer;
+        }
     }
 
     private void CreateMesh()
@@ -81,9 +87,9 @@ public class ProceduralMeshTest : MonoBehaviour
         Mesh.MeshDataArray meshDataArray = Mesh.AllocateWritableMeshData(1);
         Mesh.MeshData      meshData      = meshDataArray[0];
 
-        JobHandle handle = Jobs[(int)m_meshType](m_mesh, meshData, Resolution, default);
-            
-        handle.Complete();
+        Jobs[(int)m_meshType](m_mesh, meshData, Resolution, default).Complete();
+        //MeshJob<SharedSquareGridMesh, MultiStream>.ScheduleParallel(m_mesh, meshData, Resolution, default).Complete();
+        
         Mesh.ApplyAndDisposeWritableMeshData(meshDataArray, m_mesh);
         MeshFilterComponent.mesh = m_mesh;
     }

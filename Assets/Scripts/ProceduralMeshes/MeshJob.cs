@@ -23,10 +23,9 @@ namespace ProceduralMeshes
 
         public static JobHandle ScheduleParallel(Mesh mesh, Mesh.MeshData meshData, int resolution, JobHandle dependency)
         {
-            var job = new MeshJob<TMeshGenerator, TMeshStreams>();
-            job.Resolution = resolution;
+            var job = new MeshJob<TMeshGenerator, TMeshStreams> {Resolution = resolution};
             job.m_streams.Setup(meshData, mesh.bounds = job.Bounds, job.VertexCount, job.IndexCount);
-            return job.ScheduleParallel(job.JobLength, 1, dependency);
+            return job.ScheduleParallel(arrayLength:job.JobLength, 1, dependency);
         }
     }
 
