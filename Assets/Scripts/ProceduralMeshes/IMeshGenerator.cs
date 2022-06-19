@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utilities.ProceduralMeshes
+namespace ProceduralMeshes
 {
     public interface IMeshGenerator
     {

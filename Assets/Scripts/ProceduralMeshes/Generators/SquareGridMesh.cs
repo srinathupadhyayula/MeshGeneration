@@ -1,9 +1,8 @@
-﻿using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
 using static Unity.Mathematics.math;
 using float2 = Unity.Mathematics.float2;
 
-namespace Utilities.ProceduralMeshes.Generators
+namespace ProceduralMeshes.Generators
 {
     public struct SquareGridMesh : IMeshGenerator
     {

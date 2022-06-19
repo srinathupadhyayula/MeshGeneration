@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Utilities.ProceduralMeshes.Streams
+namespace ProceduralMeshes.Streams
 {
     public struct SingleStream : IMeshStreams
     {

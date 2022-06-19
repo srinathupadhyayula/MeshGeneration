@@ -3,7 +3,7 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 
-namespace Utilities.ProceduralMeshes
+namespace ProceduralMeshes
 {
     [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]
     public struct MeshJob<TMeshGenerator, TMeshStreams> 

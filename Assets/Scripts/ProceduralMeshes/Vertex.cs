@@ -1,8 +1,6 @@
-using Unity.Burst;
 using Unity.Mathematics;
-using UnityEngine;
 
-namespace Utilities.ProceduralMeshes
+namespace ProceduralMeshes
 {
     public struct Vertex
     {

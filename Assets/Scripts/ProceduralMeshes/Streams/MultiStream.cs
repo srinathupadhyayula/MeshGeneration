@@ -1,12 +1,11 @@
 ﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Utilities.ProceduralMeshes.Streams
+namespace ProceduralMeshes.Streams
 {
     public struct MultiStream : IMeshStreams
     {
