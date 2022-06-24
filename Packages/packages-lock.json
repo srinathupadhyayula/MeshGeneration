@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.thirdvertexstudios.meshgeneration": {
+      "version": "file:MeshGeneration",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.6"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "7.0.5",
       "depth": 1,
@@ -125,7 +133,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.14",
+      "version": "3.0.15",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -134,7 +142,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.15",
+      "version": "2.0.16",
       "depth": 0,
       "source": "registry",
       "dependencies": {

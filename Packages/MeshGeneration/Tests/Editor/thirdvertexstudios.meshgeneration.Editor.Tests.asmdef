@@ -1,0 +1,20 @@
+{
+    "name": "thirdvertexstudios.meshgeneration.Editor.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:904d80dccad704a3f95e42bd0ad5d960",
+        "GUID:e8172c58fe942c340a9747cb5d0e1654",
+        "GUID:22b5252d7078033458111ff7321f9bb0"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

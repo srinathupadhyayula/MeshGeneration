@@ -1,0 +1,16 @@
+{
+    "name": "thirdvertexstudios.meshgeneration.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:329b4ccd385744985bf3f83cfd77dfe7"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

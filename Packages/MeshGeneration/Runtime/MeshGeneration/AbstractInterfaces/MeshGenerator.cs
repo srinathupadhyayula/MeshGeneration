@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using JetBrains.Annotations;
 using MeshGeneration.MeshDataTypes;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Unity.Mathematics;
 
 namespace MeshGeneration.AbstractInterfaces
 {
