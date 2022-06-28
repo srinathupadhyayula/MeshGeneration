@@ -67,6 +67,7 @@ namespace MeshGeneration.Generators
                 int3 triangleA = int3(bottomLeft,  topLeft, bottomRight);
                 int3 triangleB = int3(bottomRight, topLeft, topRight);
 
+                //Debug.Log($"\nti:{ti}\nresolution.x:{resolution.x}\nrow:{row}\ncolumn:{column}");
                 triangles[triangleAIndex] = triangleA;
                 triangles[triangleBIndex] = triangleB;
             }
@@ -75,7 +76,7 @@ namespace MeshGeneration.Generators
 
     [CreateAssetMenu(menuName = "ScriptableObjects/MeshGeneration/Generators/SharedSquareGridGenerator"
                    , fileName = "SharedSquareGridGenerator")]
-    public class SharedSquareGridGenerator : MeshGenerator
+    public class SquareGridGenerator : MeshGenerator
     {
         [Serializable]
         public struct GridResolution
