@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using MeshGeneration.MeshDataTypes;
 using Unity.Collections;
 using Unity.Collections.LowLevel.Unsafe;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Unity.Mathematics;
@@ -11,18 +12,30 @@ using Unity.Mathematics;
 namespace MeshGeneration.AbstractInterfaces
 {
     [System.Serializable]
-    public abstract class MeshGeneratorBase : ScriptableObject, IMeshGenerator
+    public abstract class MeshGenerator : ScriptableObject, IMeshGenerator
     {
         [NativeDisableContainerSafetyRestriction]
         private NativeArray<Vertex> m_vertexStream;
 
         [NativeDisableContainerSafetyRestriction]
         private NativeArray<TriangleUInt16> m_triangleStream;
+        
+        private NativeArray<Vertex> m_vertices;
+        private NativeArray<int3>   m_triangles;
+        private JobHandle           m_verticesHandle;
+        private JobHandle           m_trianglesJobHandle;
+        private IJobFor             m_verticesJob;
+        private IJobFor             m_trianglesJob;
 
-        protected abstract NativeArray<Vertex> Vertices    { get; set; }
-        protected abstract NativeArray<int3>   Triangles   { get; set; }
-        protected abstract int                 VertexCount { get; }
-        protected abstract int                 IndexCount  { get; }
+        public NativeArray<Vertex> Vertices           { get => m_vertices;           set => m_vertices = value; }
+        public NativeArray<int3>   Triangles          { get => m_triangles;          set => m_triangles = value; }
+        public JobHandle           VerticesJobHandle  { get => m_verticesHandle;     set => m_verticesHandle = value; }
+        public JobHandle           TrianglesJobHandle { get => m_trianglesJobHandle; set => m_trianglesJobHandle = value; }
+        public IJobFor             VerticesJob        { get => m_verticesJob;        set => m_verticesJob = value; }
+        public IJobFor             TrianglesJob       { get => m_trianglesJob;       set => m_trianglesJob = value; }
+
+        protected abstract int VertexCount { get; }
+        protected abstract int IndexCount  { get; }
 
 
         public void Generate([NotNull] ref Mesh mesh)
@@ -36,7 +49,7 @@ namespace MeshGeneration.AbstractInterfaces
             SetupMeshStreams(ref meshData);
             CalculateVertices();
             CalculateTriangles();
-            CompleteJobs();
+            FinishMeshCalculations();
             UpdateMeshStreams();
             DisposeAll();
 
@@ -72,7 +85,7 @@ namespace MeshGeneration.AbstractInterfaces
 
         public abstract void CalculateVertices();
         public abstract void CalculateTriangles();
-        public abstract void CompleteJobs();
+        public abstract void FinishMeshCalculations();
 
         #endregion // Abstract Methods
 
