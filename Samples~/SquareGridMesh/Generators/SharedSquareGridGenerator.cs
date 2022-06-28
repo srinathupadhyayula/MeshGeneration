@@ -67,7 +67,6 @@ namespace MeshGeneration.Generators
                 int3 triangleA = int3(bottomLeft,  topLeft, bottomRight);
                 int3 triangleB = int3(bottomRight, topLeft, topRight);
 
-                //Debug.Log($"\nti:{ti}\nresolution.x:{resolution.x}\nrow:{row}\ncolumn:{column}");
                 triangles[triangleAIndex] = triangleA;
                 triangles[triangleBIndex] = triangleB;
             }
