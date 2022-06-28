@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SharedSquareGridGenerator
   m_EditorClassIdentifier: 
   <Resolution>k__BackingField:
-    x: 4
-    y: 4
+    x: 3
+    y: 5

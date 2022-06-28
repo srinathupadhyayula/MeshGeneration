@@ -76,15 +76,8 @@ namespace MeshGeneration.Generators
 
     [CreateAssetMenu(menuName = "ScriptableObjects/MeshGeneration/Generators/SharedSquareGridGenerator"
                    , fileName = "SharedSquareGridGenerator")]
-    public class SharedSquareGridGenerator : MeshGeneratorBase
+    public class SquareGridGenerator : MeshGenerator
     {
-        private NativeArray<Vertex>   m_vertices;
-        private NativeArray<int3>     m_triangles;
-        private JobHandle             m_verticesHandle;
-        private JobHandle             m_trianglesHandle;
-        private CalculateVerticesJob  m_calculateVerticesJob;
-        private CalculateTrianglesJob m_calculateTrianglesJob;
-
         [Serializable]
         public struct GridResolution
         {
@@ -97,31 +90,28 @@ namespace MeshGeneration.Generators
         private            int                        TriangleCount => NumCells           * 2;
         protected override int                        VertexCount   => (Resolution.x + 1) * (Resolution.y + 1);
         protected override int                        IndexCount    => 6                  * NumCells;
-        protected override NativeArray<Vertex>        Vertices      { get => m_vertices;  set => m_vertices = value; }
-        protected override NativeArray<int3>          Triangles     { get => m_triangles; set => m_triangles = value; }
 
         public override void CalculateVertices()
         {
-            m_vertices = new NativeArray<Vertex>(VertexCount, Allocator.TempJob);
-            m_calculateVerticesJob =
-                new CalculateVerticesJob {vertices = m_vertices, size = 1, resolution = int2(Resolution.x, Resolution.y)};
-            m_verticesHandle = m_calculateVerticesJob.ScheduleParallel(Resolution.y + 1, 1, default);
+            Vertices          = new NativeArray<Vertex>(VertexCount, Allocator.TempJob);
+            VerticesJob       = new CalculateVerticesJob {vertices = Vertices, size = 1, resolution = int2(Resolution.x, Resolution.y)};
+            VerticesJobHandle = ((CalculateVerticesJob) VerticesJob).ScheduleParallel(Resolution.y + 1, 1, default);
         }
 
         public override void CalculateTriangles()
         {
-            m_triangles             = new NativeArray<int3>(TriangleCount, Allocator.TempJob);
-            m_calculateTrianglesJob = new CalculateTrianglesJob {triangles = m_triangles, resolution = int2(Resolution.x, Resolution.y)};
-            m_trianglesHandle       = m_calculateTrianglesJob.ScheduleParallel(Resolution.y, 1, default);
+            Triangles          = new NativeArray<int3>(TriangleCount, Allocator.TempJob);
+            TrianglesJob       = new CalculateTrianglesJob {triangles = Triangles, resolution = int2(Resolution.x, Resolution.y)};
+            TrianglesJobHandle = ((CalculateTrianglesJob) TrianglesJob).ScheduleParallel(Resolution.y, 1, default);
         }
         
-        public override void CompleteJobs()
+        public override void FinishMeshCalculations()
         {
-            m_verticesHandle.Complete();
-            m_trianglesHandle.Complete();
+            VerticesJobHandle.Complete();
+            TrianglesJobHandle.Complete();
 
-            m_vertices.CopyFrom(m_calculateVerticesJob.vertices);
-            m_triangles.CopyFrom(m_calculateTrianglesJob.triangles);
+            Vertices.CopyFrom(((CalculateVerticesJob) VerticesJob).vertices);
+            Triangles.CopyFrom(((CalculateTrianglesJob) TrianglesJob).triangles);
         }
     }
 }
