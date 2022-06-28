@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.1.1] - 2022-06-28
+Moved Samples Folder to Under MeshGeneration/ directory
+
 ## [1.1.0] - 2022-06-28
 Moved mesh related members from SharedSquareGridGenerator.cs into MeshGenerationBase.cs
 Renamed method CompleteJobs() to FinishMeshCalculations()

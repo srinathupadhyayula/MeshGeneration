@@ -1,6 +1,6 @@
 {
   "name": "com.thirdvertexstudios.meshgeneration",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "displayName": "Mesh Generation API",
   "type": "tool",
   "unity": "2021.3",
@@ -19,7 +19,7 @@
     {
       "displayName": "Square Grid Mesh",
       "description": "Contains a sample scene and example Generator script which is a scriptable object script.\nThe associated scriptable object is also in the folder.\nThe sample scene contains an example game object that shows the usage of the api.",
-      "path": "Samples~/SquareGridMesh"
+      "path": "Samples~/MeshGeneration/SquareGridMesh"
     }
   ],
   "author": {
