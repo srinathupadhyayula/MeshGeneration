@@ -19,7 +19,7 @@
     {
       "displayName": "Square Grid Mesh",
       "description": "Contains a sample scene and example Generator script which is a scriptable object script.\nThe associated scriptable object is also in the folder.\nThe sample scene contains an example game object that shows the usage of the api.",
-      "path": "Samples~/MeshGeneration/SquareGridMesh"
+      "path": "Samples~/SquareGridMesh/MeshGeneration"
     }
   ],
   "author": {
