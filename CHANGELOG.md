@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.!] - 2022-06-28
+Make setter for TMeshData Data in MeshGenerator class public
+
 ## [1.2.0] - 2022-06-28
 Changed interface IMeshGenerator to abstract class MeshGeneratorBase for allowing Unity serialization
 abstract class MeshGenerator is now a generic class MeshGenerator<TMeshData> and has a data member TMeshData Data
