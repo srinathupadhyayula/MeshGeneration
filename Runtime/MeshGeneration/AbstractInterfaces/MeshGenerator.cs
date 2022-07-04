@@ -38,7 +38,7 @@ namespace MeshGeneration.AbstractInterfaces
         protected abstract int IndexCount  { get; }
 
 
-        [field: SerializeField] public TMeshData Data { get; private set; }
+        [field: SerializeField] public TMeshData Data { get; set; }
 
         public override void Generate([NotNull] ref Mesh mesh)
         {
