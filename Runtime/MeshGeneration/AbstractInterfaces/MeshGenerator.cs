@@ -11,8 +11,8 @@ using Unity.Mathematics;
 
 namespace MeshGeneration.AbstractInterfaces
 {
-    [System.Serializable]
-    public abstract class MeshGenerator : ScriptableObject, IMeshGenerator
+    [Serializable]
+    public abstract class MeshGenerator<TMeshData> : MeshGeneratorBase
     {
         [NativeDisableContainerSafetyRestriction]
         private NativeArray<Vertex> m_vertexStream;
@@ -20,25 +20,27 @@ namespace MeshGeneration.AbstractInterfaces
         [NativeDisableContainerSafetyRestriction]
         private NativeArray<TriangleUInt16> m_triangleStream;
         
-        private NativeArray<Vertex> m_vertices;
-        private NativeArray<int3>   m_triangles;
-        private JobHandle           m_verticesHandle;
-        private JobHandle           m_trianglesJobHandle;
-        private IJobFor             m_verticesJob;
-        private IJobFor             m_trianglesJob;
+        private                  NativeArray<Vertex> m_vertices;
+        private                  NativeArray<int3>   m_triangles;
+        private                  JobHandle           m_verticesHandle;
+        private                  JobHandle           m_trianglesJobHandle;
+        private                  IJobFor             m_verticesJob;
+        private                  IJobFor             m_trianglesJob;
 
-        public NativeArray<Vertex> Vertices           { get => m_vertices;           set => m_vertices = value; }
-        public NativeArray<int3>   Triangles          { get => m_triangles;          set => m_triangles = value; }
-        public JobHandle           VerticesJobHandle  { get => m_verticesHandle;     set => m_verticesHandle = value; }
-        public JobHandle           TrianglesJobHandle { get => m_trianglesJobHandle; set => m_trianglesJobHandle = value; }
-        public IJobFor             VerticesJob        { get => m_verticesJob;        set => m_verticesJob = value; }
-        public IJobFor             TrianglesJob       { get => m_trianglesJob;       set => m_trianglesJob = value; }
+        public override NativeArray<Vertex> Vertices           { get => m_vertices;           set => m_vertices = value; }
+        public override NativeArray<int3>   Triangles          { get => m_triangles;          set => m_triangles = value; }
+        public override JobHandle           VerticesJobHandle  { get => m_verticesHandle;     set => m_verticesHandle = value; }
+        public override JobHandle           TrianglesJobHandle { get => m_trianglesJobHandle; set => m_trianglesJobHandle = value; }
+        public override IJobFor             VerticesJob        { get => m_verticesJob;        set => m_verticesJob = value; }
+        public override IJobFor             TrianglesJob       { get => m_trianglesJob;       set => m_trianglesJob = value; }
 
         protected abstract int VertexCount { get; }
         protected abstract int IndexCount  { get; }
 
 
-        public void Generate([NotNull] ref Mesh mesh)
+        [field: SerializeField] public TMeshData Data { get; private set; }
+
+        public override void Generate([NotNull] ref Mesh mesh)
         {
             if (mesh == null)
                 throw new ArgumentNullException(nameof(mesh));
@@ -57,7 +59,7 @@ namespace MeshGeneration.AbstractInterfaces
             Mesh.ApplyAndDisposeWritableMeshData(meshDataArray, mesh);
         }
 
-        public void SetupMeshStreams(ref Mesh.MeshData meshData)
+        public override void SetupMeshStreams(ref Mesh.MeshData meshData)
         {
             var descriptor = new NativeArray<VertexAttributeDescriptor>(4, Allocator.Temp, NativeArrayOptions.UninitializedMemory);
 
@@ -83,13 +85,13 @@ namespace MeshGeneration.AbstractInterfaces
 
         #region Abstract Methods
 
-        public abstract void CalculateVertices();
-        public abstract void CalculateTriangles();
-        public abstract void FinishMeshCalculations();
+        public abstract override void CalculateVertices();
+        public abstract override void CalculateTriangles();
+        public abstract override void FinishMeshCalculations();
 
         #endregion // Abstract Methods
 
-        public void UpdateMeshStreams()
+        public override void UpdateMeshStreams()
         {
             for (var vi = 0; vi < m_vertexStream.Length; ++vi)
             {
@@ -102,7 +104,7 @@ namespace MeshGeneration.AbstractInterfaces
             }
         }
 
-        public void DisposeAll()
+        public override void DisposeAll()
         {
             if (m_vertexStream.IsCreated)
             {

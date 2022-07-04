@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0] - 2022-06-28
+Changed interface IMeshGenerator to abstract class MeshGeneratorBase for allowing Unity serialization
+abstract class MeshGenerator is now a generic class MeshGenerator<TMeshData> and has a data member TMeshData Data
+User defined Generator classes will define the type of 'Data'. Ex: SquareGridGenerator : MeshGenerator<GridResolution> where 
+GridResolution is a struct in this case, but may be anything.
+In MeshGeneratorComponent class, data member Generator is changed from type MeshGenerator to MeshGeneratorBase
+
 ## [1.1.2] - 2022-06-28
 Moved Samples/MeshGeneration/SquareGridMesh/* to Under Samples/SquareGridMesh/MeshGeneration/*
 

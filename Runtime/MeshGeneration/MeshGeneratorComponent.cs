@@ -7,11 +7,11 @@ namespace MeshGeneration
     [RequireComponent(typeof(MeshRenderer))]
     public class MeshGeneratorComponent : MonoBehaviour
     {
-        [field: SerializeField] public  MeshFilter        MeshFilterComponent          { get; private set; }
-        [field: SerializeField] public  MeshRenderer      MeshRendererComponent        { get; private set; }
-        [field: SerializeField] public  Material          MaterialToUseForMeshRenderer { get; private set; }
-        [field: SerializeField] public  string            MeshName                     { get; private set; } = "GeneratedMesh";
-        [field: SerializeField] public  MeshGenerator Generator                    { get; private set; }
+        [field: SerializeField] public MeshFilter        MeshFilterComponent          { get; private set; }
+        [field: SerializeField] public MeshRenderer      MeshRendererComponent        { get; private set; }
+        [field: SerializeField] public Material          MaterialToUseForMeshRenderer { get; private set; }
+        [field: SerializeField] public string            MeshName                     { get; private set; } = "GeneratedMesh";
+        [field: SerializeField] public MeshGeneratorBase Generator                    { get; private set; }
 
         private Mesh m_mesh;
         public bool m_regenMesh;
@@ -78,7 +78,7 @@ namespace MeshGeneration
 
         public void Generate()
         {
-            if (!Generator)
+            if (Generator == null)
             {
                 return;
             }
