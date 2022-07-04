@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf4669148c14e478ded4aa70d6785d9, type: 3}
   m_Name: SharedSquareGridGenerator
   m_EditorClassIdentifier: 
-  <Resolution>k__BackingField:
+  <Data>k__BackingField:
     x: 3
-    y: 5
+    y: 3
