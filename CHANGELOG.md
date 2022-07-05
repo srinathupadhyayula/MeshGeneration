@@ -1,9 +1,17 @@
 # Changelog
 
-## [1.2.!] - 2022-06-28
+## [1.2.2] - 2022-07-05
+Fix typos and date errors in changelog.
+Fixed access modifiers in abstract class MeshGeneratorBase.
+Fixed access modifiers in abstract class MeshGenerator.
+Moved abstract properties VertexCount and IndexCount from MeshGenerator to meshGeneratorBase
+Added abstract property TrialgleCount to MeshGeneratorBase.
+
+
+## [1.2.1] - 2022-07-04
 Make setter for TMeshData Data in MeshGenerator class public
 
-## [1.2.0] - 2022-06-28
+## [1.2.0] - 2022-07-04
 Changed interface IMeshGenerator to abstract class MeshGeneratorBase for allowing Unity serialization
 abstract class MeshGenerator is now a generic class MeshGenerator<TMeshData> and has a data member TMeshData Data
 User defined Generator classes will define the type of 'Data'. Ex: SquareGridGenerator : MeshGenerator<GridResolution> where 

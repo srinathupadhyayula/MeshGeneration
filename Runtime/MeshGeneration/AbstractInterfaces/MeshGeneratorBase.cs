@@ -8,18 +8,24 @@ namespace MeshGeneration.AbstractInterfaces
 {
     public abstract class MeshGeneratorBase : ScriptableObject
     {
-        public abstract NativeArray<Vertex> Vertices           { get; set; }
-        public abstract NativeArray<int3>   Triangles          { get; set; }
-        public abstract JobHandle           VerticesJobHandle  { get; set; }
-        public abstract JobHandle           TrianglesJobHandle { get; set; }
-        public abstract IJobFor             VerticesJob        { get; set; }
-        public abstract IJobFor             TrianglesJob       { get; set; }
-        public abstract void                Generate(ref         Mesh          mesh);
-        public abstract void                SetupMeshStreams(ref Mesh.MeshData meshData);
-        public abstract void                CalculateVertices();
-        public abstract void                CalculateTriangles();
-        public abstract void                FinishMeshCalculations();
-        public abstract void                UpdateMeshStreams();
-        public abstract void                DisposeAll();
+        protected abstract NativeArray<Vertex> Vertices           { get; set; }
+        protected abstract NativeArray<int3>   Triangles          { get; set; }
+        protected abstract JobHandle           VerticesJobHandle  { get; set; }
+        protected abstract JobHandle           TrianglesJobHandle { get; set; }
+        protected abstract IJobFor             VerticesJob        { get; set; }
+        protected abstract IJobFor             TrianglesJob       { get; set; }
+
+        protected abstract int VertexCount   { get; }
+        protected abstract int IndexCount    { get; }
+        protected abstract int TriangleCount { get; }
+
+        protected abstract void SetupMeshStreams(ref Mesh.MeshData meshData);
+        protected abstract void CalculateVertices();
+        protected abstract void CalculateTriangles();
+        protected abstract void FinishMeshCalculations();
+        protected abstract void UpdateMeshStreams();
+        protected abstract void DisposeAll();
+
+        public abstract void Generate(ref Mesh mesh);
     }
 }

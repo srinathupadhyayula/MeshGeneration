@@ -86,25 +86,25 @@ namespace MeshGeneration.Generators
     public class SquareGridGenerator : MeshGenerator<GridResolution>
     {
         private            int NumCells      => Data.x       * Data.y;
-        private            int TriangleCount => NumCells       * 2;
+        protected override int TriangleCount => NumCells     * 2;
         protected override int VertexCount   => (Data.x + 1) * (Data.y + 1);
-        protected override int IndexCount    => 6              * NumCells;
+        protected override int IndexCount    => 6            * NumCells;
 
-        public override void CalculateVertices()
+        protected override void CalculateVertices()
         {
             Vertices          = new NativeArray<Vertex>(VertexCount, Allocator.TempJob);
             VerticesJob       = new CalculateVerticesJob {vertices = Vertices, size = 1, resolution = int2(Data.x, Data.y)};
             VerticesJobHandle = ((CalculateVerticesJob) VerticesJob).ScheduleParallel(Data.y + 1, 1, default);
         }
 
-        public override void CalculateTriangles()
+        protected override void CalculateTriangles()
         {
             Triangles          = new NativeArray<int3>(TriangleCount, Allocator.TempJob);
             TrianglesJob       = new CalculateTrianglesJob {triangles = Triangles, resolution = int2(Data.x, Data.y)};
             TrianglesJobHandle = ((CalculateTrianglesJob) TrianglesJob).ScheduleParallel(Data.y, 1, default);
         }
         
-        public override void FinishMeshCalculations()
+        protected override void FinishMeshCalculations()
         {
             VerticesJobHandle.Complete();
             TrianglesJobHandle.Complete();
