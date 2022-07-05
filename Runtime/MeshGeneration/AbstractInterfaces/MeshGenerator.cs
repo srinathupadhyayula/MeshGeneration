@@ -20,22 +20,19 @@ namespace MeshGeneration.AbstractInterfaces
         [NativeDisableContainerSafetyRestriction]
         private NativeArray<TriangleUInt16> m_triangleStream;
         
-        private                  NativeArray<Vertex> m_vertices;
-        private                  NativeArray<int3>   m_triangles;
-        private                  JobHandle           m_verticesHandle;
-        private                  JobHandle           m_trianglesJobHandle;
-        private                  IJobFor             m_verticesJob;
-        private                  IJobFor             m_trianglesJob;
+        private NativeArray<Vertex> m_vertices;
+        private NativeArray<int3>   m_triangles;
+        private JobHandle           m_verticesHandle;
+        private JobHandle           m_trianglesJobHandle;
+        private IJobFor             m_verticesJob;
+        private IJobFor             m_trianglesJob;
 
-        public override NativeArray<Vertex> Vertices           { get => m_vertices;           set => m_vertices = value; }
-        public override NativeArray<int3>   Triangles          { get => m_triangles;          set => m_triangles = value; }
-        public override JobHandle           VerticesJobHandle  { get => m_verticesHandle;     set => m_verticesHandle = value; }
-        public override JobHandle           TrianglesJobHandle { get => m_trianglesJobHandle; set => m_trianglesJobHandle = value; }
-        public override IJobFor             VerticesJob        { get => m_verticesJob;        set => m_verticesJob = value; }
-        public override IJobFor             TrianglesJob       { get => m_trianglesJob;       set => m_trianglesJob = value; }
-
-        protected abstract int VertexCount { get; }
-        protected abstract int IndexCount  { get; }
+        protected override NativeArray<Vertex> Vertices           { get => m_vertices;           set => m_vertices = value; }
+        protected override NativeArray<int3>   Triangles          { get => m_triangles;          set => m_triangles = value; }
+        protected override JobHandle           VerticesJobHandle  { get => m_verticesHandle;     set => m_verticesHandle = value; }
+        protected override JobHandle           TrianglesJobHandle { get => m_trianglesJobHandle; set => m_trianglesJobHandle = value; }
+        protected override IJobFor             VerticesJob        { get => m_verticesJob;        set => m_verticesJob = value; }
+        protected override IJobFor             TrianglesJob       { get => m_trianglesJob;       set => m_trianglesJob = value; }
 
 
         [field: SerializeField] public TMeshData Data { get; set; }
@@ -59,7 +56,7 @@ namespace MeshGeneration.AbstractInterfaces
             Mesh.ApplyAndDisposeWritableMeshData(meshDataArray, mesh);
         }
 
-        public override void SetupMeshStreams(ref Mesh.MeshData meshData)
+        protected override void SetupMeshStreams(ref Mesh.MeshData meshData)
         {
             var descriptor = new NativeArray<VertexAttributeDescriptor>(4, Allocator.Temp, NativeArrayOptions.UninitializedMemory);
 
@@ -85,13 +82,13 @@ namespace MeshGeneration.AbstractInterfaces
 
         #region Abstract Methods
 
-        public abstract override void CalculateVertices();
-        public abstract override void CalculateTriangles();
-        public abstract override void FinishMeshCalculations();
+        protected abstract override void CalculateVertices();
+        protected abstract override void CalculateTriangles();
+        protected abstract override void FinishMeshCalculations();
 
         #endregion // Abstract Methods
 
-        public override void UpdateMeshStreams()
+        protected override void UpdateMeshStreams()
         {
             for (var vi = 0; vi < m_vertexStream.Length; ++vi)
             {
@@ -104,7 +101,7 @@ namespace MeshGeneration.AbstractInterfaces
             }
         }
 
-        public override void DisposeAll()
+        protected override void DisposeAll()
         {
             if (m_vertexStream.IsCreated)
             {
@@ -128,7 +125,7 @@ namespace MeshGeneration.AbstractInterfaces
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void SetVertex(int index, Vertex vertexData) =>
+        private void SetVertex(int index, Vertex vertexData) =>
             m_vertexStream[index] = new Vertex
                                     {
                                         Position   = vertexData.position
@@ -138,6 +135,6 @@ namespace MeshGeneration.AbstractInterfaces
                                     };
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public void SetTriangle(int index, int3 triangleData) => m_triangleStream[index] = triangleData;
+        private void SetTriangle(int index, int3 triangleData) => m_triangleStream[index] = triangleData;
     }
 }
