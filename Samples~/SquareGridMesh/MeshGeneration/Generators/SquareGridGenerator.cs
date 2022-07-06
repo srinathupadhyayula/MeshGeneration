@@ -90,6 +90,9 @@ namespace MeshGeneration.Generators
         protected override int VertexCount   => (Data.x + 1) * (Data.y + 1);
         protected override int IndexCount    => 6            * NumCells;
 
+        private IJobFor VerticesJob  { get; set; }
+        private IJobFor TrianglesJob { get; set; }
+
         protected override void CalculateVertices()
         {
             Vertices          = new NativeArray<Vertex>(VertexCount, Allocator.TempJob);

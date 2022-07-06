@@ -12,8 +12,6 @@ namespace MeshGeneration.AbstractInterfaces
         protected abstract NativeArray<int3>   Triangles          { get; set; }
         protected abstract JobHandle           VerticesJobHandle  { get; set; }
         protected abstract JobHandle           TrianglesJobHandle { get; set; }
-        protected abstract IJobFor             VerticesJob        { get; set; }
-        protected abstract IJobFor             TrianglesJob       { get; set; }
 
         protected abstract int VertexCount   { get; }
         protected abstract int IndexCount    { get; }
