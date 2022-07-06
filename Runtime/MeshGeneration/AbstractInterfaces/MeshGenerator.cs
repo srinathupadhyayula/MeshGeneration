@@ -20,19 +20,17 @@ namespace MeshGeneration.AbstractInterfaces
         [NativeDisableContainerSafetyRestriction]
         private NativeArray<TriangleUInt16> m_triangleStream;
         
-        private NativeArray<Vertex> m_vertices;
-        private NativeArray<int3>   m_triangles;
-        private JobHandle           m_verticesHandle;
-        private JobHandle           m_trianglesJobHandle;
-        private IJobFor             m_verticesJob;
-        private IJobFor             m_trianglesJob;
+        private            NativeArray<Vertex> m_vertices;
+        private            NativeArray<int3>   m_triangles;
+        private            JobHandle           m_verticesHandle;
+        private            JobHandle           m_trianglesJobHandle;
+       
 
         protected override NativeArray<Vertex> Vertices           { get => m_vertices;           set => m_vertices = value; }
         protected override NativeArray<int3>   Triangles          { get => m_triangles;          set => m_triangles = value; }
         protected override JobHandle           VerticesJobHandle  { get => m_verticesHandle;     set => m_verticesHandle = value; }
         protected override JobHandle           TrianglesJobHandle { get => m_trianglesJobHandle; set => m_trianglesJobHandle = value; }
-        protected override IJobFor             VerticesJob        { get => m_verticesJob;        set => m_verticesJob = value; }
-        protected override IJobFor             TrianglesJob       { get => m_trianglesJob;       set => m_trianglesJob = value; }
+        
 
 
         [field: SerializeField] public TMeshData Data { get; set; }

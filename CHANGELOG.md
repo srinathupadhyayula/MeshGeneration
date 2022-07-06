@@ -1,11 +1,18 @@
 # Changelog
 
+## [1.2.3] - 2022-07-06
+Removed abstract properties VerticesJob and TrianglesJob for abstract class MeshGeneratorBase. This is because there is no guarantee that the implementing generator class will have just one job or any jobs at all for calculating vertices and triangles
+Removed the abstract implementation of the above properties from the abstract class MeshGenerator<TmeshData> for the same reason.
+Removed backing member variables for those properties m_verticesJob & m_trianglesJob from the abstract class MeshGenerator<TmeshData>.
+Converted properties VerticesJob and TrianglesJob to auto-properties in sample generator SquareGridGenerator class
+
+
 ## [1.2.2] - 2022-07-05
 Fix typos and date errors in changelog.
 Fixed access modifiers in abstract class MeshGeneratorBase.
 Fixed access modifiers in abstract class MeshGenerator.
 Moved abstract properties VertexCount and IndexCount from MeshGenerator to meshGeneratorBase
-Added abstract property TrialgleCount to MeshGeneratorBase.
+Added abstract property TriangleCount to MeshGeneratorBase.
 
 
 ## [1.2.1] - 2022-07-04
