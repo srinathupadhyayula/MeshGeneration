@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.7] - 2022-07-07
+Fixed Sample name and path in package.json
+
 ## [1.2.6] - 2022-07-07
 Renamed Samples Directory SquareGridMesh to Grid2DMeshGenerator
 Renamed SquareGridGenerator class and file to Grid2DGenerator as it more accurately represents what the class does.
