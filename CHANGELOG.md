@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.4] - 2022-07-07
+Added boolean properties to give user options for various mesh optimizations in abstract class MeshGenerator
+MeshGenerator.Generate() not calls the respective mesh optimizations based on the above properties.
+
+
 ## [1.2.3] - 2022-07-06
 Removed abstract properties VerticesJob and TrianglesJob for abstract class MeshGeneratorBase. This is because there is no guarantee that the implementing generator class will have just one job or any jobs at all for calculating vertices and triangles
 Removed the abstract implementation of the above properties from the abstract class MeshGenerator<TmeshData> for the same reason.
