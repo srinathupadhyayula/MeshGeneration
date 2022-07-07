@@ -1,4 +1,6 @@
 # Changelog
+## [1.2.4] - 2022-07-07
+In MeshGenerator.Generator() if mesh == null create new mesh i.e. mesh = new Mesh() instead of throwing an exception.
 
 ## [1.2.4] - 2022-07-07
 Added boolean properties to give user options for various mesh optimizations in abstract class MeshGenerator
