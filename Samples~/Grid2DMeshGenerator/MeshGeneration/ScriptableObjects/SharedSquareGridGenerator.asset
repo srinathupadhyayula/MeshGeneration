@@ -13,5 +13,10 @@ MonoBehaviour:
   m_Name: SharedSquareGridGenerator
   m_EditorClassIdentifier: 
   <Data>k__BackingField:
-    x: 3
+    x: 4
     y: 3
+  <RecalculateBounds>k__BackingField: 0
+  <OptimizeGeneratedMesh>k__BackingField: 0
+  <RecalculateUVDistributionsMetrics>k__BackingField: 0
+  <RecalculateNormals>k__BackingField: 0
+  <RecalculateTangents>k__BackingField: 0

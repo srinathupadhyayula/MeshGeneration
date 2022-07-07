@@ -83,7 +83,7 @@ namespace MeshGeneration.Generators
 
     [CreateAssetMenu(menuName = "ScriptableObjects/MeshGeneration/Generators/SharedSquareGridGenerator"
                    , fileName = "SharedSquareGridGenerator")]
-    public class SquareGridGenerator : MeshGenerator<GridResolution>
+    public class Grid2DGenerator : MeshGenerator<GridResolution>
     {
         private            int NumCells      => Data.x       * Data.y;
         protected override int TriangleCount => NumCells     * 2;
