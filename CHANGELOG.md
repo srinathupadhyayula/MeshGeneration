@@ -1,5 +1,10 @@
 # Changelog
-## [1.2.4] - 2022-07-07
+
+## [1.2.6] - 2022-07-07
+Renamed Samples Directory SquareGridMesh to Grid2DMeshGenerator
+Renamed SquareGridGenerator class and file to Grid2DGenerator as it more accurately represents what the class does.
+
+## [1.2.5] - 2022-07-07
 In MeshGenerator.Generator() if mesh == null create new mesh i.e. mesh = new Mesh() instead of throwing an exception.
 
 ## [1.2.4] - 2022-07-07
