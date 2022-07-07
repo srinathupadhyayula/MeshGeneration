@@ -42,7 +42,9 @@ namespace MeshGeneration.AbstractInterfaces
         public override void Generate([NotNull] ref Mesh mesh)
         {
             if (mesh == null)
-                throw new ArgumentNullException(nameof(mesh));
+            {
+                mesh = new Mesh();
+            }
 
             Mesh.MeshDataArray meshDataArray = Mesh.AllocateWritableMeshData(1);
             Mesh.MeshData      meshData      = meshDataArray[0];
