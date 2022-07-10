@@ -4,12 +4,9 @@ using UnityEngine;
 namespace MeshGeneration
 {
     [RequireComponent(typeof(MeshFilter))]
-    [RequireComponent(typeof(MeshRenderer))]
     public class MeshGeneratorComponent : MonoBehaviour
     {
         [field: SerializeField] public MeshFilter        MeshFilterComponent          { get; private set; }
-        [field: SerializeField] public MeshRenderer      MeshRendererComponent        { get; private set; }
-        [field: SerializeField] public Material          MaterialToUseForMeshRenderer { get; private set; }
         [field: SerializeField] public string            MeshName                     { get; private set; } = "GeneratedMesh";
         [field: SerializeField] public MeshGeneratorBase Generator                    { get; private set; }
 
@@ -39,13 +36,11 @@ namespace MeshGeneration
             CacheComponents();
             CreateMesh();
             UpdateMeshFilter();
-            InitializeMeshRenderer();
         }
         
         private void CacheComponents()
         {
             MeshFilterComponent   = MeshFilterComponent ? MeshFilterComponent : GetComponent<MeshFilter>();
-            MeshRendererComponent = MeshRendererComponent ? MeshRendererComponent : GetComponent<MeshRenderer>();
         }
         
         private void CreateMesh()
@@ -66,14 +61,6 @@ namespace MeshGeneration
         private void UpdateMeshFilter()
         {
             MeshFilterComponent.sharedMesh = m_mesh;
-        }
-        
-        private void InitializeMeshRenderer()
-        {
-            if (MeshRendererComponent)
-            {
-                MeshRendererComponent.sharedMaterial = MaterialToUseForMeshRenderer;
-            }
         }
 
         public void Generate()

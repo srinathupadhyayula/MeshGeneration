@@ -1,6 +1,6 @@
 {
   "name": "com.thirdvertexstudios.meshgeneration",
-  "version": "1.2.8",
+  "version": "1.2.9",
   "displayName": "Mesh Generation API",
   "type": "tool",
   "unity": "2021.3",
