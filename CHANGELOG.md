@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.8] - 2022-07-10
+Removed mesh optimization options. The idea is to use a seperate package/tool/api for optimizations.
+Renamed Scriptable Object SharedSquareGridGenerator to Grid2DGenerator to accurately represent its functionality
+
 ## [1.2.7] - 2022-07-07
 Fixed Sample name and path in package.json
 
