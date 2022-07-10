@@ -30,14 +30,9 @@ namespace MeshGeneration.AbstractInterfaces
         protected override NativeArray<int3>   Triangles          { get => m_triangles;          set => m_triangles = value; }
         protected override JobHandle           VerticesJobHandle  { get => m_verticesHandle;     set => m_verticesHandle = value; }
         protected override JobHandle           TrianglesJobHandle { get => m_trianglesJobHandle; set => m_trianglesJobHandle = value; }
-        
-        [field: SerializeField] public TMeshData Data                              { get; set; }
-        [field: SerializeField] public bool      RecalculateBounds                 { get; set; }
-        [field: SerializeField] public bool      OptimizeGeneratedMesh             { get; set; }
-        [field: SerializeField] public bool      RecalculateUVDistributionsMetrics { get; set; }
-        [field: SerializeField] public bool      RecalculateNormals                { get; set; }
-        [field: SerializeField] public bool      RecalculateTangents               { get; set; }
-        
+
+        [field: SerializeField] public TMeshData Data { get; set; }
+
 
         public override void Generate([NotNull] ref Mesh mesh)
         {
@@ -55,34 +50,6 @@ namespace MeshGeneration.AbstractInterfaces
             FinishMeshCalculations();
             UpdateMeshStreams();
             DisposeAll();
-
-            if (RecalculateUVDistributionsMetrics)
-            {
-                mesh.RecalculateUVDistributionMetrics();
-            }
-            
-            if (RecalculateNormals)
-            {
-                mesh.RecalculateNormals();
-            }
-            
-            
-            if (RecalculateTangents)
-            {
-                mesh.RecalculateTangents();
-            }
-            
-            if (OptimizeGeneratedMesh)
-            {
-                mesh.OptimizeReorderVertexBuffer();
-                mesh.OptimizeIndexBuffers();
-                mesh.Optimize();
-            }
-
-            if (RecalculateBounds)
-            {
-                mesh.RecalculateBounds();
-            }
             
             Mesh.ApplyAndDisposeWritableMeshData(meshDataArray, mesh);
         }

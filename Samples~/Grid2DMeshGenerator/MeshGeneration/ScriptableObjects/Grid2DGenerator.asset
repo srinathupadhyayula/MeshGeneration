@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bf4669148c14e478ded4aa70d6785d9, type: 3}
-  m_Name: SharedSquareGridGenerator
+  m_Name: Grid2DGenerator
   m_EditorClassIdentifier: 
   <Data>k__BackingField:
     x: 3
