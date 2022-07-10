@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.9] - 2022-07-10
+Removed MeshRenderer requirement from MehGeneratorComponent.
+Removed functionality to set custom material for the MeshRenderer upon generation as renderer is no longer required.
+
 ## [1.2.8] - 2022-07-10
 Removed mesh optimization options. The idea is to use a seperate package/tool/api for optimizations.
 Renamed Scriptable Object SharedSquareGridGenerator to Grid2DGenerator to accurately represent its functionality
