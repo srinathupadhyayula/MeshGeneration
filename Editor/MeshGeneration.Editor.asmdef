@@ -2,7 +2,8 @@
     "name": "MeshGeneration.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:329b4ccd385744985bf3f83cfd77dfe7"
+        "GUID:329b4ccd385744985bf3f83cfd77dfe7",
+        "GUID:e8172c58fe942c340a9747cb5d0e1654"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
