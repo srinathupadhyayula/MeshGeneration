@@ -1,5 +1,8 @@
 # Changelog
 
+# [1.2.9] - 2022-07-10
+Renamed Assembly files. Removed "thirdvertexstudios" from name for now.
+
 ## [1.2.9] - 2022-07-10
 Removed MeshRenderer requirement from MehGeneratorComponent.
 Removed functionality to set custom material for the MeshRenderer upon generation as renderer is no longer required.
