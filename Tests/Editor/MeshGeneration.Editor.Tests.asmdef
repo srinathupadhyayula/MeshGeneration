@@ -1,10 +1,11 @@
 {
-    "name": "thirdvertexstudios.meshgeneration.Tests",
+    "name": "MeshGeneration.Editor.Tests",
     "rootNamespace": "",
     "references": [
         "GUID:0acc523941302664db1f4e527237feb3",
         "GUID:27619889b8ba8c24980f49ee34dbb44a",
         "GUID:904d80dccad704a3f95e42bd0ad5d960",
+        "GUID:22b5252d7078033458111ff7321f9bb0",
         "GUID:e8172c58fe942c340a9747cb5d0e1654"
     ],
     "includePlatforms": [],
